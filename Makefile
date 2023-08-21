@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/08/17 20:36:34 by sadoming         ###   ########.fr        #
+#    Updated: 2023/08/21 20:03:55 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@ NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra -g
 
 MAK = Makefile
-LIBF = ft_printf.h
-SRC = ft_bzero.c ft_itoa.c ft_printf.c
+LIBP = ft_printf.h
+SRC = ft_convert.c ft_itoa.c ft_printf.c ft_putstr.c
 OBJ = $(patsubst %.c, %.o, $(SRC))
 # --------------------------------------- #
 
 all: $(NAME)
 
-%.o : %.c $(MAK) $(LIBF)
+%.o : %.c $(MAK) $(LIBP)
 	cc $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
@@ -48,6 +48,7 @@ $(TEST): $(OBJ) $(TOBJ)
 
 test: $(TEST)
 	@leaks -atExit -- ./$(TEST)
+
 # ************************************************************************************* #
 DEB = debug.out
 DEBB = $(SRC) $(TSRC)

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:01:07 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/17 20:21:05 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:05:07 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,30 @@ int	ft_putchar(char ch)
 	return (write(1, &ch, 1));
 }
 
-void	ft_switch(char cast, va_list args, int ret)
+int	ft_switch(char cast, va_list args)
 {
+	int		ret;
+
+	ret = 0;
 	if (cast == 'c')
 		ret += ft_putchar(va_arg(args, int));
 	else if (cast == 's')
-		va_arg(args, char *);
+		ret += ft_putstr(va_arg(args, char *));
 	else if (cast == 'p')
 		ret += va_arg(args, unsigned long);
 	else if (cast == 'd')
-		ret += va_arg(args, int);
+		ret += ft_printnbr(va_arg(args, int));
 	else if (cast == 'i')
-		ret += va_arg(args, int);
+		ret += ft_printnbr(va_arg(args, int));
 	else if (cast == 'u')
 		ret += va_arg(args, unsigned int);
 	else if (cast == 'x')
-		ret += va_arg(args, unsigned int);
+		ret += ft_hexmin_cnv(va_arg(args, unsigned int));
 	else if (cast == 'X')
-		ret += va_arg(args, unsigned int);
-	else if (cast == '%')
-		ret ++;
+		ret += ft_hexmax_cnv(va_arg(args, unsigned int));
 	else
 		ret += ft_putchar(cast);
+	return (ret);
 }
 
 int	ft_printf(char const *cast, ...)
@@ -53,8 +55,8 @@ int	ft_printf(char const *cast, ...)
 	while (cast[++cnt])
 	{
 		if (cast[cnt] == '%')
-			ft_switch(cast[++cnt], args, ret);
-		if (write(1, &cast[cnt], 1) != -1)
+			ret += ft_switch(cast[++cnt], args);
+		else if (write(1, &cast[cnt], 1) != -1)
 			ret++;
 		else
 			return (-1);
