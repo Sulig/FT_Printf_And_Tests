@@ -6,11 +6,25 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:20:16 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/21 19:43:26 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:05:02 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	ft_bzero(void *s, size_t n)
+{
+	size_t	cnt;
+	char	*dst;
+
+	dst = (char *) s;
+	cnt = 0;
+	while (cnt < n)
+	{
+		dst[cnt] = '\0';
+		cnt++;
+	}
+}
 
 static char	*ft_printstr(char *s, int cnt, char n)
 {
@@ -65,6 +79,7 @@ char	*ft_itoa(int n)
 	str = malloc(cnt + 1 * 1);
 	if (str == 0)
 		return (0);
+	ft_bzero(str, cnt);
 	ft_putnbr(num, str, cnt -1);
 	return (ft_printstr(str, 0, '-'));
 }

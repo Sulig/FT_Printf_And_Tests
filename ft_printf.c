@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:01:07 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/21 20:05:07 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:47:12 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ int	ft_switch(char cast, va_list args)
 		ret += ft_putstr(va_arg(args, char *));
 	else if (cast == 'p')
 		ret += va_arg(args, unsigned long);
-	else if (cast == 'd')
-		ret += ft_printnbr(va_arg(args, int));
-	else if (cast == 'i')
+	else if (cast == 'd' || cast == 'i')
 		ret += ft_printnbr(va_arg(args, int));
 	else if (cast == 'u')
 		ret += va_arg(args, unsigned int);

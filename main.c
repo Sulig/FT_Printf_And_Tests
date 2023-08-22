@@ -6,25 +6,21 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:23:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/21 20:25:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:06:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "test_printf.h"
 
 int	main(void)
 {
-	int		min = -1;
-	int		ret;
 	//char	*str = "STRstr0123";
 
-	/**/
-	ret = ft_printf("Testing ft_printf!!%%\t|");
-	printf("L: %i|\n", ret);
-	ret = printf("Testing ft_printf!!%%\t|");
-	printf("L: %i|\n\n", ret);
-	/**/
+	printf("\033[1;34m\t     ~ Made by Sadoming ~\n");
+	printf("\n\033[1;36m**///////////////////////////////////////////**\n");
+	printf("**/             Testing Printf              /**\n");
+	printf("**///////////////////////////////////////////**\n\n");
+	test_nc();
 	/*
 	ret = ft_printf("Mine: %%%c", 'x');
 	printf("\t|Length: %i|\n", ret);
@@ -39,16 +35,8 @@ int	main(void)
 	ret = ft_printf("%s", (char *)NULL);
 	printf("\t|length: %i|\n", ret);
 	*/
-	ret = printf("Or int: %i\t|Len:", min);
-	printf("%i|\n", ret);
-	ret = ft_printf("Mi int: %i\t|Len:", min);
-	printf("%i|\n\n", ret);
-
-	min = rand();
-	ret = printf("Random Or: %i\t|Len ", min);
-	printf("%i|\n", ret);
-	ret = ft_printf("Random Mi: %i\t|Len ", min);
-	ret = ft_printf("%i|\n", ret);
+	test_nbr();
+	test_hexc();
 	/**/
-	ret = ft_printf("\n");
+	printf("\033[1;95m \n");
 }

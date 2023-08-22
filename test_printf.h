@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   test_printf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 19:31:03 by sadoming          #+#    #+#             */
-/*   Updated: 2023/07/11 20:12:53 by sadoming         ###   ########.fr       */
+/*   Created: 2023/08/22 16:19:30 by sadoming          #+#    #+#             */
+/*   Updated: 2023/08/22 20:15:14 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef TEST_PRINTF_H
+# define TEST_PRINTF_H
 
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	cnt;
-	char	*dest;
+# include <stdio.h>
+# include "ft_printf.h"
 
-	dest = (char *) s;
-	cnt = 0;
-	while (cnt < n)
-	{
-		dest[cnt] = '\0';
-		cnt++;
-	}
-}
+// Apliccations -->
+void	cc(char color);
+void	look4ko(int ori, int you);
+
+// Tests -->
+void	test_nc(void);
+void	test_nbr(void);
+void	test_hexc(void);
+
+#endif
