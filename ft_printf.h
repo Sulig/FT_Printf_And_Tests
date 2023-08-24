@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 20:12:03 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/22 19:47:28 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:02:53 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int		ft_hexmin_cnv(unsigned int nbr);
-int		ft_hexmax_cnv(unsigned int nbr);
-char	*ft_itoa(int n);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_itoa(int n, char *base);
+char	*ft_itoa_unsig(size_t n, char *base);
 int		ft_printf(char const *str, ...);
-int		ft_printnbr(int nbr);
+int		ft_putchar(char ch);
+int		ft_putnbr(int nbr);
 int		ft_putstr(char *str);
+int		ft_putunsig(size_t nbr, char cast);
 
 #endif

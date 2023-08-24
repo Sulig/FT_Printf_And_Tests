@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:23:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/22 20:06:45 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:20:49 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(void)
 	ret = printf("Orin: %%%c", 'x');
 	printf("\t|Length: %i|\n\n", ret);
 	ret = ft_printf("Str mine: %s\t|", str);
-	printf("L: %i|\n", ret);
 	ret = printf("Str orin: %s\t|", str);
 	printf("L: %i|\n\nTesting case \"NULL\"\n Orin->\t", ret);
 	ret = printf("%s", (char *)NULL);

@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/08/22 20:06:19 by sadoming         ###   ########.fr        #
+#    Updated: 2023/08/24 19:54:01 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,17 @@ CFLAGS = -Wall -Wextra -Werror
 # Sources:
 LIB = ft_printf.h
 
-SRC = ft_convert.c ft_itoa.c ft_printf.c ft_printstr.c ft_putstr.c
+SRC = ft_calloc.c ft_itoa.c ft_printf.c ft_switch_cast.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC)) $(LIB)
-#------------------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 
 ### Region 4 test files 4 Printf ###
 TEST = test.out
 
 TLIB = test_printf.h
 
-TSRC = custom_colors.c main.c test_nc.c test_nbr.c test_hexc.c
+TSRC = main.c test_nc.c test_nbr.c test_hexc.c test_utils.c
 
 TOBJ = $(patsubst %.c, %.o, $(TSRC)) $(TLIB)
 #------------------------------------------------------------------------------#
@@ -49,6 +49,7 @@ $(TEST): $(OBJ) $(TOBJ)
 # ./test.out:
 test: $(TEST)
 	@leaks -atExit -- ./$(TEST)
+	@make fclean
 
 # *************************************************************************************** #
 
@@ -65,10 +66,10 @@ debug: $(DEB)
 # *************************************************************************************** #
 
 clean:
-	/bin/rm -f *.o
+	@/bin/rm -f *.o
 
 fclean : clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

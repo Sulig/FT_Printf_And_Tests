@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custom_colors.c                                    :+:      :+:    :+:   */
+/*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 17:00:41 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/22 17:56:20 by sadoming         ###   ########.fr       */
+/*   Created: 2023/08/24 19:51:08 by sadoming          #+#    #+#             */
+/*   Updated: 2023/08/24 20:16:21 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,60 @@ void	cc(char color)
 	}
 }
 
-void	look4ko(int you, int ori)
+int	look4ko(int you, int ori)
 {
+	int		ok;
+
 	if (you == ori)
 	{
 		cc('G');
-		printf(" \t~ |OK| ~");
+		printf(" \t\t\t\t\t\t\t\t~ |OK| ~");
+		ok = 1;
 	}
 	else
 	{
 		cc('R');
-		printf(" \t~ |KO!| ~\n Diferent Length! -> Org |%i|\tYou |%i|", ori, you);
+		printf(" \t\t\t\t\t\t\t\t~ |KO!| ~\
+			   	Diferent Length! -> Org |%i|\tYou |%i|", ori, you);
+		ok = 0;
 	}
 	cc('W');
 	printf("\n");
+	return (ok);
+}
+
+void	resume(int len, ...)
+{
+	va_list	args;
+	int		cnt;
+	int		now;
+
+	cnt = 0;
+	va_start(args, len);
+	cc('C');
+	printf("|---------- - >\n");
+	printf("| Tests Resume: ");
+	while (cnt < len)
+	{
+		now = va_arg(args, int);
+		if (now == 1)
+		{
+			cc('G');
+			printf("|OK| ");
+		}
+		else if (now == 0)
+		{
+			cc('R');
+			printf("|KO| ");
+		}
+		else
+		{
+			cc('Y');
+			printf("|Something went wrong| ");
+		}
+		cnt++;
+	}
+	va_end(args);
+	cc('C');
+	printf("\n{~~~~~~~~~~~~~~~}\n");
 }

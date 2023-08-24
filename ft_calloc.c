@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 18:48:10 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/21 19:04:36 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/09 17:30:06 by sadoming          #+#    #+#             */
+/*   Updated: 2023/08/24 19:08:32 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printstr(char *str)
+static void	ft_bzero(void *s, size_t n)
 {
-	int		ret;
-	int		cnt;
+	size_t	cnt;
+	char	*dest;
 
-	ret = 0;
-	cnt = -1;
-	while (str[++cnt])
+	dest = (char *) s;
+	cnt = 0;
+	while (cnt < n)
 	{
-		if (write(1, &str[cnt], 1) == -1)
-			return (-1);
-		ret++;
+		dest[cnt] = '\0';
+		cnt++;
 	}
-	return (ret);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*call;
+
+	call = malloc(count * size);
+	if (call == 0)
+		return (0);
+	ft_bzero(call, count * size);
+	return (call);
 }
