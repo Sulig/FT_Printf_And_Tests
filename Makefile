@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/08/24 19:54:01 by sadoming         ###   ########.fr        #
+#    Updated: 2023/08/29 18:00:40 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ TEST = test.out
 
 TLIB = test_printf.h
 
-TSRC = main.c test_nc.c test_nbr.c test_hexc.c test_utils.c
+TSRC = main.c test_csp_and_noformat.c test_nbr.c test_utils.c
 
 TOBJ = $(patsubst %.c, %.o, $(TSRC)) $(TLIB)
 #------------------------------------------------------------------------------#
@@ -47,9 +47,8 @@ $(TEST): $(OBJ) $(TOBJ)
 	@echo * "\n\n"
 
 # ./test.out:
-test: $(TEST)
+test: $(TEST) fclean
 	@leaks -atExit -- ./$(TEST)
-	@make fclean
 
 # *************************************************************************************** #
 
@@ -73,10 +72,7 @@ fclean : clean
 
 re: fclean all
 
-clear:
-	/bin/rm -f *.swp
-	/bin/rm -f *.o
-	/bin/rm -f $(NAME)
+clear: fclean
 	/bin/rm -f $(TEST)
 	/bin/rm -f $(DEB)
 	@clear

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 18:47:28 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/24 19:08:17 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:46:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ int	ft_putstr(char *str)
 int	ft_putnbr(int nbr)
 {
 	char	*str;
-	char	*base;
 	int		ret;
 
-	base = "0123456789";
-	str = ft_itoa(nbr, base);
+	str = ft_itoa(nbr);
 	ret = ft_putstr(str);
 	free(str);
 	return (ret);
@@ -48,18 +46,25 @@ int	ft_putunsig(size_t nbr, char cast)
 	char	*str;
 	char	*base;
 	int		ret;
+	int		save;
 
-	ret = 0;
+	save = 0;
 	if (cast == 'X')
 		base = "0123456789ABCDEF";
-	if (cast == 'x' || cast == 'u' || cast == 'p')
+	if (cast == 'x' || cast == 'p')
 	{
 		base = "0123456789abcdef";
 		if (cast == 'p')
-			ret += ft_putstr("0x");
+			save = ft_putstr("0x");
+		if (save == -1)
+			return (save);
 	}
+	else if (cast == 'u')
+		base = "0123456789";
 	str = ft_itoa_unsig(nbr, base);
 	ret = ft_putstr(str);
 	free(str);
-	return (ret);
+	if (ret == -1)
+		return (ret);
+	return (ret + save);
 }

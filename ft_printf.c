@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:01:07 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/24 19:37:15 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:52:02 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_printf(char const *cast, ...)
 	va_start(args, cast);
 	cnt = -1;
 	ret = 0;
-	while (cast[++cnt])
+	while (cast[++cnt] && ret != -1)
 	{
 		if (cast[cnt] == '%')
 			ret += ft_switch(cast[++cnt], args);

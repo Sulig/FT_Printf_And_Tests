@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 20:12:03 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/24 19:02:53 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:38:07 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_itoa(int n, char *base);
+char	*ft_itoa(int n);
 char	*ft_itoa_unsig(size_t n, char *base);
 int		ft_printf(char const *str, ...);
 int		ft_putchar(char ch);

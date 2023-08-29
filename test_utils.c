@@ -6,40 +6,37 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 19:51:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/24 20:16:21 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:29:25 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_printf.h"
 
+void	sep(char c)
+{
+	cc('y');
+	if (!c || c == '\0')
+		printf("~ ------------------------- ~\t\t\t\t\t*~~~~~~~*\n");
+	else
+		 printf("~ Testing \"%%%c\" cases:\t\t\t\t\t\t~ \"%%%c\" ~", c, c);
+	cc('w');
+	printf("\n");
+}
+
 void	cc(char color)
 {
-	switch (color)
-	{
-		case 'R':
-			printf("\033[1;91m");
-			break;
-
-		case 'G':
-			printf("\033[1;92m");
-			break;
-
-		case 'B':
-			printf("\033[1;34m");
-			break;
-
-		case 'Y':
-			printf("\033[1;93m");
-			break;
-
-		case 'W':
-			printf("\033[1;37m");
-			break;
-
-		case 'C':
-			printf("\033[1;36m");
-			break;
-	}
+	if (color == 'R' || color == 'r')
+		printf("\033[1;91m");
+	else if (color == 'G' || color == 'g')
+		printf("\033[1;92m");
+	else if (color == 'B' || color == 'b')
+		printf("\033[1;34m");
+	else if (color == 'Y' || color == 'y')
+		printf("\033[1;93m");
+	else if (color == 'W' || color == 'w')
+		printf("\033[1;37m");
+	else if (color == 'C' || color == 'c')
+		printf("\033[1;36m");
 }
 
 int	look4ko(int you, int ori)
@@ -55,8 +52,9 @@ int	look4ko(int you, int ori)
 	else
 	{
 		cc('R');
-		printf(" \t\t\t\t\t\t\t\t~ |KO!| ~\
-			   	Diferent Length! -> Org |%i|\tYou |%i|", ori, you);
+		printf(" \t\t\t\t\t\t\t\t~ |KO!| ~\n");
+		printf("Diferent Length! -> Org |%i|\tYou |%i|\n", ori, you);
+		printf("!! ----------------------------------- !!");
 		ok = 0;
 	}
 	cc('W');
@@ -68,9 +66,11 @@ void	resume(int len, ...)
 {
 	va_list	args;
 	int		cnt;
+	int		res;
 	int		now;
 
 	cnt = 0;
+	res = 0;
 	va_start(args, len);
 	cc('C');
 	printf("|---------- - >\n");
@@ -82,6 +82,7 @@ void	resume(int len, ...)
 		{
 			cc('G');
 			printf("|OK| ");
+			res++;
 		}
 		else if (now == 0)
 		{
@@ -97,5 +98,16 @@ void	resume(int len, ...)
 	}
 	va_end(args);
 	cc('C');
-	printf("\n{~~~~~~~~~~~~~~~}\n");
+	printf("\n{~~~~~~~~~~~~~~~}");
+	/**/
+	if (res == len)
+	{
+		cc('g');
+		printf("\t\t\t\t\t       |OK Region|\n");
+	}
+	else
+	{
+		cc('y');
+		printf("\t\t\t\t\t   |Revise your code|\n");
+	}
 }
