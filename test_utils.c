@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 19:51:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/28 20:29:25 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:18:53 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	look4ko(int you, int ori)
 	return (ok);
 }
 
-void	resume(int len, ...)
+int	resume(int len, ...)
 {
 	va_list	args;
 	int		cnt;
@@ -92,7 +92,7 @@ void	resume(int len, ...)
 		else
 		{
 			cc('Y');
-			printf("|Something went wrong| ");
+			printf("|%i| ", now);
 		}
 		cnt++;
 	}
@@ -104,10 +104,12 @@ void	resume(int len, ...)
 	{
 		cc('g');
 		printf("\t\t\t\t\t       |OK Region|\n");
+		return (1);
 	}
 	else
 	{
 		cc('y');
 		printf("\t\t\t\t\t   |Revise your code|\n");
+		return (0);
 	}
 }

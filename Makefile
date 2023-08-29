@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/08/29 18:00:40 by sadoming         ###   ########.fr        #
+#    Updated: 2023/08/29 19:04:00 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,7 @@ OBJ = $(patsubst %.c, %.o, $(SRC)) $(LIB)
 TEST = test.out
 
 TLIB = test_printf.h
-
-TSRC = main.c test_csp_and_noformat.c test_nbr.c test_utils.c
-
+TSRC = test_printf_main.c test_csp_and_noformat.c test_nbr.c test_utils.c
 TOBJ = $(patsubst %.c, %.o, $(TSRC)) $(TLIB)
 #------------------------------------------------------------------------------#
 
@@ -50,7 +48,7 @@ $(TEST): $(OBJ) $(TOBJ)
 test: $(TEST) fclean
 	@leaks -atExit -- ./$(TEST)
 
-# *************************************************************************************** #
+# ******************************************************************************* #
 
 # lldb:
 DEB = debug.out
@@ -62,7 +60,7 @@ $(DEB): $(DEBB)
 debug: $(DEB)
 	@lldb $(DEB)
 
-# *************************************************************************************** #
+# ********************************************************************************* #
 
 clean:
 	@/bin/rm -f *.o
@@ -77,6 +75,6 @@ clear: fclean
 	/bin/rm -f $(DEB)
 	@clear
 # -------------------- #
-.PHONY: clean fclean re rebonus test debug clear
+.PHONY: all clean fclean re test debug clear
 
-# *************************************************************************************** #
+# ********************************************************************************** #

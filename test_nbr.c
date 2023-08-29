@@ -6,16 +6,17 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:49:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/29 18:02:00 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:24:57 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_printf.h"
 
-void	test_int(void)
+int	test_int(void)
 {
 	int		min, max, random;
 	int		res[8];
+	int		nn;
 
 	min = -2147483648;
 	max = 2147483647;
@@ -31,20 +32,21 @@ void	test_int(void)
 	res[6] = look4ko(ft_printf("You: |%i| |%i| |%i|\n", 2, 0, -1), printf("Ori: |%i| |%i| |%i|\n", 2, 0, -1));
 	res[7] = look4ko(ft_printf("You: |%i| |%i| |%i| |%i| |%i| |%i|\n", 0, 5, -10, random, min, max), printf("Ori: |%i| |%i| |%i| |%i| |%i| |%i|\n", 0, 5, -10, random, min, max));
 	/**/
-	resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+	nn = resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
 	/**/
 	sep(0);
+	return (nn);
 }
 
-void	test_hex(void)
+int	test_hex(void)
 {
 	int		min, max, random;
 	int		res[16];
+	int		nn;
 
 	min = -2147483648;
 	max = 2147483647;
 	random = rand();
-
 	/**/
 	sep('x');
 	res[0] = look4ko(ft_printf("You: %x\n", 1), printf("Ori: %x\n", 1));
@@ -56,7 +58,9 @@ void	test_hex(void)
 	res[6] = look4ko(ft_printf("You: |%x| |%x| |%x|\n", 2, 0, -1), printf("Ori: |%x| |%x| |%x|\n", 2, 0, -1));
 	res[7] = look4ko(ft_printf("You: |%x| |%x| |%x| |%x| |%x| |%x|\n", 0, 5, -10, random, min, max), printf("Ori: |%x| |%x| |%x| |%x| |%x| |%x|\n", 0, 5, -10, random, min, max));
 	/**/
-	resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+	nn = resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+	if (nn == 0)
+		return (0);
 	sep(0);
 	/**/
 	sep('X');
@@ -69,17 +73,19 @@ void	test_hex(void)
 	res[14] = look4ko(ft_printf("You: |%X| |%X| |%X|\n", 2, 0, -1), printf("Ori: |%X| |%X| |%X|\n", 2, 0, -1));
 	res[15] = look4ko(ft_printf("You: |%X| |%X| |%X| |%X| |%X| |%X|\n", 0, 5, -10, random, min, max), printf("Ori: |%X| |%X| |%X| |%X| |%X| |%X|\n", 0, 5, -10, random, min, max));
 	/**/
-	resume(8, res[8], res[9], res[10], res[11], res[12], res[13], res[14], res[15]);
+	nn = resume(8, res[8], res[9], res[10], res[11], res[12], res[13], res[14], res[15]);
 	sep(0);
 	/**/
 	resume(16, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7], res[8], res[9], res[10], res[11], res[12], res[13], res[14], res[15]);
 	sep(0);
+	return (nn);
 }
 
-void	test_unsig(void)
+int	test_unsig(void)
 {
 	int		min, max, random;
 	int		res[8];
+	int		nn;
 
 	min = -2147483648;
 	max = 2147483647;
@@ -95,7 +101,8 @@ void	test_unsig(void)
 	res[6] = look4ko(ft_printf("You: |%u| |%u| |%u|\n", 1, 0, -1), printf("Ori: |%u| |%u| |%u|\n", 1, 0, -1));
 	res[7] = look4ko(ft_printf("You: |%u| |%u| |%u| |%u| |%u| |%u|\n", 0, 5, -10, random, min, max), printf("Ori: |%u| |%u| |%u| |%u| |%u| |%u|\n", 0, 5, -10, random, min, max));
 	/**/
-	resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+	nn = resume(8, res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
 	/**/
 	sep(0);
+	return (nn);
 }
