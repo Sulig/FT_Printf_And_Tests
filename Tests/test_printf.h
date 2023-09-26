@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:19:30 by sadoming          #+#    #+#             */
-/*   Updated: 2023/08/29 19:07:31 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:59:51 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TEST_PRINTF_H
 
 # include <stdio.h>
-# include "ft_printf.h"
+# include "../Printf/ft_printf.h"
 
 // Apliccations -->
 void	cc(char color);

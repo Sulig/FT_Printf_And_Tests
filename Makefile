@@ -6,75 +6,72 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/08/29 19:04:00 by sadoming         ###   ########.fr        #
+#    Updated: 2023/09/26 14:39:09 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-CFLAGS = -Wall -Wextra -Werror
-
-# Sources:
-LIB = ft_printf.h
-
-SRC = ft_calloc.c ft_itoa.c ft_printf.c ft_switch_cast.c
-
-OBJ = $(patsubst %.c, %.o, $(SRC)) $(LIB)
-#------------------------------------------------------------------------------#
-
-### Region 4 test files 4 Printf ###
+PF = Printf
+TDIR = Tests
+# ------------------------------^
 TEST = test.out
+NM = ./$(PF)/libftprintf.a
+TN = ./$(TDIR)/test_printf.a
+CFLAGS = -Wall -Werror -Wextra -I
 
-TLIB = test_printf.h
-TSRC = test_printf_main.c test_csp_and_noformat.c test_nbr.c test_utils.c
-TOBJ = $(patsubst %.c, %.o, $(TSRC)) $(TLIB)
 #------------------------------------------------------------------------------#
+# Test region:
+$(TEST): clear
+	@make norminette
+	@echo "\033[1;93m * Compiling Printf -->\033[1;97m\n"
+	@make -C $(PF)
+	@echo "\033[1;93m * Compiling Tests -->\033[1;97m\n"
+	@make -C $(TDIR)
+	@gcc -o $(TEST) $(NM) $(TN)
+	@echo "\033[1;35m Ready to Test!\033[1;97m\n"
 
-all: $(NAME)
+norminette: $(PF)
+	@echo "\n\033[1;93m~ Norminette:"
+	@norminette $(PF)
+	@echo "\033[1;32m ~ Norminette OK\n"
 
-%.o : %.c $(LIB) $(MAK)
-	cc $(CFLAGS) -c -o $@ $<
-
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-
-# make test.out:
-$(TEST): $(OBJ) $(TOBJ)
-	@norminette $(SRC) 
-	@gcc -o $(TEST) *.o
-	@echo * "\n\n"
-
-# ./test.out:
-test: $(TEST) fclean
+test: $(TEST)
 	@leaks -atExit -- ./$(TEST)
+	@make fclean
 
 # ******************************************************************************* #
-
-# lldb:
+# Debuging region:
 DEB = debug.out
-DEBB = $(SRC) $(TSRC)
 
 $(DEB): $(DEBB)
-	@gcc -g $(DEBB) -o $(DEB)
+	@gcc -g $(DEBB) -o $(SRC)
 
 debug: $(DEB)
 	@lldb $(DEB)
 
-# ********************************************************************************* #
+valgrind: $(DEB)
+	@gcc -g $(FLAGS) -o $(DEB) $(DEBB)
+	@valgrind ./$(DEB)
 
+# ********************************************************************************* #
+# Clean region
 clean:
-	@/bin/rm -f *.o
+	@/bin/rm -f ./$(PF)/*.o
+	@/bin/rm -f ./$(TDIR)/*.o
+	@/bin/rm -f $(TEST)
+	@/bin/rm -f $(DEB)
 
 fclean : clean
-	@/bin/rm -f $(NAME)
-
-re: fclean all
+	@/bin/rm -f $(NM)
+	@/bin/rm -f $(TN)
+	@/bin/rm -frd test.out.dSYM
+	@/bin/rm -frd debug.out.dSYM
+	@/bin/rm -f .DS_Store
 
 clear: fclean
-	/bin/rm -f $(TEST)
-	/bin/rm -f $(DEB)
 	@clear
+
+re: fclean all
 # -------------------- #
-.PHONY: all clean fclean re test debug clear
+.PHONY: all clean clear fclean debug re test valgrind
 
 # ********************************************************************************** #
