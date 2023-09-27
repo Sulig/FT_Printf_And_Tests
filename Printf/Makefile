@@ -21,9 +21,9 @@ SRC = ft_calloc.c ft_itoa.c ft_printf.c ft_switch_cast.c
 OBJ = $(patsubst %.c, %.o, $(SRC))
 #------------------------------------------------------------------------------#
 
-all: $(MAK) $(NAME) $(LIB)
+all: $(NAME)
 
-%.o : %.c $(LIB) $(MAK)
+%.o : %.c $(MAK) $(LIB)
 	@gcc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
@@ -39,5 +39,5 @@ fclean : clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 # ******************************************* #
