@@ -30,5 +30,14 @@ $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@echo "\033[1;32m Printf Compiled Successfully\033[1;97m\n"
 
-.PHONY: all
-# *********************************************************************************** #
+clean:
+	@/bin/rm -f *.o
+
+fclean : clean
+	@/bin/rm -f $(NAME)
+	@/bin/rm -f .DS_Store
+
+re: fclean all
+
+.PHONY: all bonus clean fclean re
+# ******************************************* #
