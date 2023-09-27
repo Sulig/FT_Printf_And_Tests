@@ -27,16 +27,16 @@ all:
 
 #-------------------------------------------------------------#
 # Compiling Region:
-$(NDM):
+$(NM):
 	@echo "\033[1;93m * Compiling Printf -->\033[1;97m\n"
 	@make -C $(DIR)
 
-$(TDN):
+$(TN):
 	@echo "\033[1;93m * Compiling Tests -->\033[1;97m\n"
 	@make -C $(TDIR)
 #-------------------------------------------------------------#
 # Test region:
-$(TEST): $(NDM) $(TDN)
+$(TEST): $(NM) $(TN)
 	@gcc -o $(TEST) $(NM) $(TN)
 	@echo "\033[1;35m Ready to Test!\033[1;97m\n"
 
