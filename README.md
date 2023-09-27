@@ -18,6 +18,15 @@ Para usar los tests, necesitaras un Makefile en tu directorio de printf, que con
 3. Guarda todo y ya esta listo para usar!
 ***
 ## Comandos:
+### All
+Compila todo lo necesario y ejecuta la norminette y los tests
+
+    make
+
+### Norminette
+
+    make norminette
+
 ### Tests:
 
     make test
