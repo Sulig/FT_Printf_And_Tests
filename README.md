@@ -6,8 +6,14 @@ Resumen:  El objetivo de este proyecto es bastante sencillo. Deberás reprograma
 - Tests basicos *(Bonus no incluidos!)
 - Subject
 
-## !! Importante Antes de ejecutar 'make'!!
-1. En el Makefile cambia la variable "PF" por el directorio de tu printf
+## !Importante!
+Para usar los tests, necesitaras un Makefile en tu directorio de printf, que contenga como minimo:
+  - La regla $(NAME)
+  - La regla clean
+  - La regla fclean
+
+### Antes de ejecutar 'make'!!
+1. En el Makefile cambia las variables donde pone *Change this directory* por el directorio de tu printf y por donde se ubica tu libftprintf.a
 2. En el archivo "test_printf.h", cambia el directorio donde esta incluido tu "ft_printf.h"
 3. Guarda todo y ya esta listo para usar!
 ***
@@ -40,3 +46,4 @@ Igual que fclean + limpia la pantalla
 
 ***
 ~ Made by sadoming ~
+***
