@@ -6,32 +6,43 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:38:54 by sadoming          #+#    #+#              #
-#    Updated: 2023/09/26 14:39:09 by sadoming         ###   ########.fr        #
+#    Updated: 2023/09/27 13:59:07 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PF = Printf
+DIR = Printf #Change this directory
 TDIR = Tests
 # ------------------------------^
 TEST = test.out
-NM = ./$(PF)/libftprintf.a
+NM = ./Printf/libftprintf.a #Change this directory
 TN = ./$(TDIR)/test_printf.a
 CFLAGS = -Wall -Werror -Wextra -I
-
 #------------------------------------------------------------------------------#
-# Test region:
-$(TEST): clear
+all:
+	@make $(NM)
+	@make $(TN)
+	@make $(TEST)
 	@make norminette
+	@make test
+
+#-------------------------------------------------------------#
+# Compiling Region:
+$(NDM):
 	@echo "\033[1;93m * Compiling Printf -->\033[1;97m\n"
-	@make -C $(PF)
+	@make -C $(DIR)
+
+$(TDN):
 	@echo "\033[1;93m * Compiling Tests -->\033[1;97m\n"
 	@make -C $(TDIR)
+#-------------------------------------------------------------#
+# Test region:
+$(TEST): $(NDM) $(TDN)
 	@gcc -o $(TEST) $(NM) $(TN)
 	@echo "\033[1;35m Ready to Test!\033[1;97m\n"
 
-norminette: $(PF)
+norminette:
 	@echo "\n\033[1;93m~ Norminette:"
-	@norminette $(PF)
+	@norminette $(DIR)
 	@echo "\033[1;32m ~ Norminette OK\n"
 
 test: $(TEST)
@@ -42,27 +53,26 @@ test: $(TEST)
 # Debuging region:
 DEB = debug.out
 
-$(DEB): $(DEBB)
-	@gcc -g $(DEBB) -o $(SRC)
+$(DEB): $(NM) $(TN)
+	@gcc -g -o $(DEB) $(NM) $(TN)
 
 debug: $(DEB)
 	@lldb $(DEB)
 
 valgrind: $(DEB)
-	@gcc -g $(FLAGS) -o $(DEB) $(DEBB)
 	@valgrind ./$(DEB)
 
 # ********************************************************************************* #
 # Clean region
 clean:
-	@/bin/rm -f ./$(PF)/*.o
-	@/bin/rm -f ./$(TDIR)/*.o
+	@make clean -C $(DIR)
+	@make clean -C $(TDIR)
 	@/bin/rm -f $(TEST)
 	@/bin/rm -f $(DEB)
 
 fclean : clean
-	@/bin/rm -f $(NM)
-	@/bin/rm -f $(TN)
+	@make fclean -C $(DIR)
+	@make fclean -C $(TDIR)
 	@/bin/rm -frd test.out.dSYM
 	@/bin/rm -frd debug.out.dSYM
 	@/bin/rm -f .DS_Store
