@@ -3,7 +3,7 @@ Resumen:  El objetivo de este proyecto es bastante sencillo. Deberás reprograma
 
 ## Contenido del repositorio:
 - Printf
-- Tests basicos *(Bonus no incluidos!)
+- Tests basicos
 - Subject
 
 ## !Importante!
